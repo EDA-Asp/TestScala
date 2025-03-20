@@ -8,3 +8,8 @@ def main(): Unit =
   for (i <- 1 to 2) do
 
     println(s"i = $i")
+
+  println(foo(5))
+
+def foo(x: Int): Int =
+  2 * x
