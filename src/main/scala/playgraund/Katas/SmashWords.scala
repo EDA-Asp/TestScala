@@ -1,12 +1,5 @@
 package playgraund.Katas
 
-@main
-def main(): Unit =
-
-  val r = smash_mkString(List("aa"))
-
-  println(s"smash =$r")
-
 def smash_mkString(words: List[String]): String =
   words.mkString(" ")
 

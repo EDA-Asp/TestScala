@@ -7,9 +7,9 @@ class SmashWordsTest extends AnyFunSuite:
   test("one string as is") {
 
     assert(
-      List(smash_mkString, smash_reduce, smash_reduceOption).map(f =>
-        f(List("aa"))
-      ) === List.fill(3)("aa")
+      List(smash_mkString, smash_reduce, smash_reduceOption).map(f => f(List("aa"))) === List.fill(
+        3
+      )("aa")
     )
 
   }
