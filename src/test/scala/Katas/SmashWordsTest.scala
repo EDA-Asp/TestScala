@@ -16,7 +16,8 @@ class SmashWordsTest extends AnyFunSuite:
 
   test("several strings as sentence") {
 
-    assert(smash_mkString(List("aa", "bb")) === "aa bb")
+    assert(smash_mkString(List("aa", "bb", "", "")) === "aa bb  ")
+    assert(smash_reduce(List("aa", "bb", "", "")) === "aa bb  ")
 
   }
 
