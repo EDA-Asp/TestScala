@@ -1,6 +1,5 @@
 import playgraund.Katas.booleanToStringToString
 
-
 @main
 def main(): Unit =
 
