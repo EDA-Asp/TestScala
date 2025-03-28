@@ -210,24 +210,37 @@ def main(): Unit =
   println(backtracking333(1, 1))
 
 
-  @tailrec
+
   def backtracking444(from: Int, s: Int, acc:List[Int] = List()): List[List[Int]] =
 
-    if s == 0 then List(List(from))
+    if s == 0 then List(acc :+ from)
     else
-      backtracking444(from+1, s - 1, from +:acc)
-      
+        lintsf.flatMap(i => backtracking444(i(from), s - 1, acc :+ from))
 
 
+
+
+  println("ASD")
+  println(backtracking444(1, 2))
 
 //
-//    s match
-//      case 0 => List(List(from))
-//      case _ =>
-//        for
-//          f <- List((x: Int) => x + 1, (x: Int) => x + 2)
-//          k <- backtracking444(f(from), s - 1)
-//        yield from +: k
+//  def backtracking555(from: Int, s: Int, acc: List[Int] = List()): List[Int] =
+//
+//    if s == 0 then List(acc :+ from)
+//    else
+//      lintsf.map(i => backtracking555(i(from), s - 1, acc :+ from))
+//
+//
+//  println("ASddD")
+//  println(backtracking555(1, 2))
+//
 
-  println(backtracking444(1, 1))
+  def backtracking3(from: Int, s: Int): List[Any] =
+    s match
+      case 0 => List(List(from))
+      case _ =>
+        for i <- lintsf
+          yield from :: backtracking3(i(from), s - 1)
 
+
+  println(backtracking3(1,2))
