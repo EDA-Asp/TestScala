@@ -118,15 +118,10 @@ import scala.annotation.tailrec
 //
 //  println(backtracking(1, 2))
 
-
-
-
-
-
 @main
 def main(): Unit =
 
-  //Print all subsets of a given Set or Array
+  // Print all subsets of a given Set or Array
 //
 //
 //  def subSetsOfArrayProblem(n: Int): Set[Int] =
@@ -136,34 +131,31 @@ def main(): Unit =
 //  def solver()
 //
 
-  def subsetsS(start: Int, end: Int, count: Int) :Seq[Seq[Int]] = (
+  def subsetsS(start: Int, end: Int, count: Int): Seq[Seq[Int]] = (
     if (count == 0)
       List(Nil)
     else
-      for(
+      for (
         head <- start to end;
-        tail <- subsetsS(head + 1, end, count -1))
+        tail <- subsetsS(head + 1, end, count - 1)
+      )
         yield head +: tail
-    )
+  )
 
-  println(subsetsS(1,3,2))
+  println(subsetsS(1, 3, 2))
 
-
-
-  def subsets2(start: Int, end: Int, count: Int) :Seq[Seq[Int]] = 
+  def subsets2(start: Int, end: Int, count: Int): Seq[Seq[Int]] =
     if (count == 0)
       List(Nil)
     else
       for
         head <- start to end
-        tt <- subsets2(head + 1, end, count -1)
+        tt <- subsets2(head + 1, end, count - 1)
       yield head +: tt
-    
 
-  println(subsets2(1,3,2))
+  println(subsets2(1, 3, 2))
 
-
-  val lintsf = List((x: Int) => x + 1, (x: Int)=> x + 2)
+  val lintsf = List((x: Int) => x + 1, (x: Int) => x + 2)
 
 //  @tailrec
 //  def backtracking2(from: Int, s: Int, acc: List[List[Int]]): List[List[Int]] =
@@ -180,10 +172,6 @@ def main(): Unit =
 //  println("AAAAAAA")
 //  println(backtracking2(1,1,List(List()))
 
-
-
-
-
   def backtracking222(from: Int, s: Int): List[List[Int]] =
     s match
       case 0 => List(List(from))
@@ -191,9 +179,7 @@ def main(): Unit =
         List((x: Int) => x + 1, (x: Int) => x + 2)
           .flatMap(f =>
             backtracking222(f(from), s - 1)
-              .map(k =>
-                from +: k
-              )
+              .map(k => from +: k)
           )
 
   println(backtracking222(1, 1))
@@ -209,16 +195,10 @@ def main(): Unit =
 
   println(backtracking333(1, 1))
 
-
-
-  def backtracking444(from: Int, s: Int, acc:List[Int] = List()): List[List[Int]] =
+  def backtracking444(from: Int, s: Int, acc: List[Int] = List()): List[List[Int]] =
 
     if s == 0 then List(acc :+ from)
-    else
-        lintsf.flatMap(i => backtracking444(i(from), s - 1, acc :+ from))
-
-
-
+    else lintsf.flatMap(i => backtracking444(i(from), s - 1, acc :+ from))
 
   println("ASD")
   println(backtracking444(1, 2))
@@ -240,7 +220,6 @@ def main(): Unit =
       case 0 => List(List(from))
       case _ =>
         for i <- lintsf
-          yield from :: backtracking3(i(from), s - 1)
+        yield from :: backtracking3(i(from), s - 1)
 
-
-  println(backtracking3(1,2))
+  println(backtracking3(1, 2))
