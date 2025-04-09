@@ -34,8 +34,7 @@ def padLines(text: String, minWdh: Int): String =
 
 def Mx(x: Int, y: Int) =
   val r = for i <- 1 to x yield
-    val l = for j <- 1 to y yield
-      padLine((i * j).toString)
+    val l = for j <- 1 to y yield padLine((i * j).toString)
     l.mkString
   r.mkString("\n")
 

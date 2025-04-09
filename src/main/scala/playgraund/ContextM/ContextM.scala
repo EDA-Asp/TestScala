@@ -50,11 +50,9 @@ object ContextM extends App {
 
   println(triple2(1))
 
+  def biz(a: Int, b: Int) = (a, b)
 
-  def biz(a:Int, b: Int) = (a,b)
-
-  def bizz(a:Int, b: String) = (_:Int,_:Int)
-
+  def bizz(a: Int, b: String) = (_: Int, _: Int)
 
   object ListMatcher:
     private val innerList = List("one", "two", "three", "Four")

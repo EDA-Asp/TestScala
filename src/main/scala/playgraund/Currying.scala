@@ -17,16 +17,12 @@ object Currying extends App {
 
   println(foo(1))
 
-
   bar13(3)(4)
 
   println(bar12(1, 10))
 
-
   println("@@@@@@")
   println(bar14(1)(10))
-
-
 
 }
 
@@ -41,7 +37,6 @@ def addWithoutSyntaxSugar(x: Int): Function1[Int, Int] = {
 }
 def fiveAdder: Function1[Int, Int] = addWithoutSyntaxSugar(5)
 
-
 def foo(x: Int, y: Int, z: Int): Int = (x + y) * z
 
 val bar12 = foo(_, 5, _)
@@ -50,12 +45,10 @@ def bar(x: Int)(y: Int)(z: Int): Int = (x + y) * z
 
 val bar13 = bar(1)
 
-val bar14 = bar(_:Int)(2)
-
+val bar14 = bar(_: Int)(2)
 
 val baz: Int => Int => Int => Int = x => y => z => (x + y) * z
 
 val baz2 = (x: Int) => (y: Int) => (z: Int) => x + y + z
 
 var k = baz(2)
-
