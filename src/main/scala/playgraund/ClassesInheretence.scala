@@ -8,8 +8,11 @@ object ClassesInheretence extends App {
   val b = elem(Vector("V1l1", "V1l2"))
   val c = elem('a', 5, 3)
 
-  println(c.toString)
   println((a beside b))
+
+  println(besideMy(a,b))
+
+
 
 }
 
@@ -87,7 +90,8 @@ private class UniformElement(
     override val height: Int
 ) extends Element:
 
-  private val line = ch.toString * width
+  val line = ch.toString * width
+
   val contents: Vector[String] = Vector.fill(height)(line)
 
 class Cat:
@@ -100,22 +104,31 @@ class Cat:
 
 class Tiger(override val dangerous: Boolean, private var age: Int) extends Cat
 
+def heighten(element: Element, h: Int): Element =
+  if element.height >= h then element
+  else
+    val top = elem(' ', element.width, (h - element.height) / 2)
+    val bot = elem(' ', element.width, h - element.height - top.height)
+    aboveMy(aboveMy(top, element), bot)
+
+def widen(element: Element, w: Int): Element =
+  if element.width >= w then element
+  else
+    val left = elem(' ', (w - element.width) / 2, element.height)
+    val right = elem(' ', w - element.width - left.width, element.height)
+    besideMy(besideMy(left,element),right)
+
+def aboveMy(e1: Element, e2: Element): Element =
+  val e1w = widen(e1,e2.width)
+  val e2w = widen(e2,e1.width)
+  elem(e1w.contents ++ e2w.contents)
+
 def besideMy(e1: Element, e2: Element): Element =
-  import scala.math._
-  //val h = (e1.height,e2.height)
-  val h = max(e1.height,e2.height)
 
-  
-
-  val List(mel,mk) = List(e1, e2).sortBy(_.height)
-  val top = elem(' ', mel.width,(h-mel.height)/2)
-  val bot = elem(' ', mel.width,(h-mel.height - top.height))
-  val ee2 = top.contents ++ mel.contents ++ bot.contents
-
-
-
+  val e1h = heighten(e1, e2.height)
+  val e2h = heighten(e2, e1.height)
 
   elem(
-    for (line1, line2) <- e1.contents zip e2.contents
+    for (line1, line2) <- e1h.contents zip e2h.contents
     yield line1 + line2
   )
