@@ -61,7 +61,6 @@ class Z extends A:
   val x1: String = "hi"
   println(s"Z: $x1, $x2")
 
-
 val z = Z()
 
 //

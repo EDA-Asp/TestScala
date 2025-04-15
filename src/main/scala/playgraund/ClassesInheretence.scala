@@ -4,29 +4,46 @@ import playgraund.Element.elem
 
 object ClassesInheretence extends App {
 
-  val a = elem("Line")
-//  val b = elem(Vector("V1l1","V1l2"))
-//  val c = elem('#',3,1)
-//  println(a besides b besides c)
+  val a = elem("Linewwwwww")
+  val b = elem(Vector("V1l1", "V1l2"))
+  val c = elem('a', 5, 3)
+
+  println(c.toString)
+  println((a beside b))
 
 }
 
 // https://stackoverflow.com/questions/12184997/scala-and-forward-references
 
 abstract class Element:
-  def height: Int = contents.length
-
   def contents: Vector[String]
-
   def width: Int = if height == 0 then 0 else contents(0).length
-
-  def above(that: Element): Element =
-    elem(this.contents ++ that.contents)
-
-  def besides(that: Element): Element =
-    elem(for (a, b) <- this.contents zip that.contents yield a + b)
-
-  override def toString: String = contents.mkString("\n")
+  def height: Int = contents.length
+  infix def above(that: Element): Element =
+    val this1 = this.widen(that.width)
+    val that1 = that.widen(this.width)
+    elem(this1.contents ++ that1.contents)
+  infix def beside(that: Element): Element =
+    val this1 = this.heighten(that.height)
+    val that1 = that.heighten(this.height)
+    elem(
+      for (line1, line2) <- this1.contents.zip(that1.contents)
+      yield line1 + line2
+    )
+  def widen(w: Int): Element =
+    if w <= width then this
+    else
+      val left = elem(' ', (w - width) / 2, height)
+      val right = elem(' ', w - width - left.width, height)
+      left beside this beside right
+  def heighten(h: Int): Element =
+    if h <= height then this
+    else
+      val top = elem(' ', width, (h - height) / 2)
+      val bot = elem(' ', width, h - height - top.height)
+      top above this above bot
+  override def toString = contents.mkString("\n")
+end Element
 
 object Element:
   def elem(contents: Vector[String]): Element = VectorElement(contents)
@@ -71,7 +88,6 @@ private class UniformElement(
 ) extends Element:
 
   private val line = ch.toString * width
-
   val contents: Vector[String] = Vector.fill(height)(line)
 
 class Cat:
@@ -83,3 +99,23 @@ class Cat:
 //  private var age = param2
 
 class Tiger(override val dangerous: Boolean, private var age: Int) extends Cat
+
+def besideMy(e1: Element, e2: Element): Element =
+  import scala.math._
+  //val h = (e1.height,e2.height)
+  val h = max(e1.height,e2.height)
+
+  
+
+  val List(mel,mk) = List(e1, e2).sortBy(_.height)
+  val top = elem(' ', mel.width,(h-mel.height)/2)
+  val bot = elem(' ', mel.width,(h-mel.height - top.height))
+  val ee2 = top.contents ++ mel.contents ++ bot.contents
+
+
+
+
+  elem(
+    for (line1, line2) <- e1.contents zip e2.contents
+    yield line1 + line2
+  )
