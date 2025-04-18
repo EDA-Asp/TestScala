@@ -10,9 +10,7 @@ object ClassesInheretence extends App {
 
   println((a beside b))
 
-  println(besideMy(a,b))
-
-
+  println(besideMy(a, b))
 
 }
 
@@ -116,11 +114,11 @@ def widen(element: Element, w: Int): Element =
   else
     val left = elem(' ', (w - element.width) / 2, element.height)
     val right = elem(' ', w - element.width - left.width, element.height)
-    besideMy(besideMy(left,element),right)
+    besideMy(besideMy(left, element), right)
 
 def aboveMy(e1: Element, e2: Element): Element =
-  val e1w = widen(e1,e2.width)
-  val e2w = widen(e2,e1.width)
+  val e1w = widen(e1, e2.width)
+  val e2w = widen(e2, e1.width)
   elem(e1w.contents ++ e2w.contents)
 
 def besideMy(e1: Element, e2: Element): Element =
