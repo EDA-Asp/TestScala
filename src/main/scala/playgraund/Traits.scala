@@ -25,6 +25,11 @@ object Traits extends App {
   qbid.put(10)
   println(qbid.get())
 
+  val q: BasicQueue = new BasicQueue with Incrementing with Filtering
+
+  println(x)
+  pr(x.head)
+
 }
 
 
@@ -70,3 +75,11 @@ transparent trait Filtering extends IntQueue:
 
 
 
+val condition = false
+transparent trait S
+trait Kind
+object Var extends Kind, S
+object Val extends Kind, S
+val x = Set(if condition then Val else Var)
+
+def pr(x: Kind): Unit = println(x)
