@@ -9,7 +9,7 @@ package playgraund.Variants
 object BloodGroups extends App {
 
   val donorO_1: Donor[Blood.O] = new User("u1") with Donor[Blood.O] {
-    val give = new Blood with Blood.O
+    val give: Blood.O = new Blood.O {}
   }
 
   val recipientA_1 = new User("u2") with Recipient[Blood.A] {
@@ -29,11 +29,11 @@ object BloodGroups extends App {
     rand.nextInt(2) match
       case 0 =>
         new User("u1") with Donor[Blood.O] {
-          val give = new Blood with Blood.O
+          val give: Blood.O = new Blood.O {}
         }
       case 1 =>
         new User("u2") with Donor[Blood.A] {
-          val give = new Blood with Blood.A
+          val give: Blood.A = new Blood.A{}
         }
   }
 
@@ -46,11 +46,11 @@ object BloodGroups extends App {
   recipientA_1.receive(DonorOorA().give)
 
   val Adonor: Donor[Blood.A] = new User("I") with Donor[Blood.O] {
-    val give = new Blood with Blood.O
+    val give = new Blood.O{}
   }
 
   val listOfADonors = new User("I") with Donor[Blood.AB] {
-    val give = new Blood with Blood.AB
+    val give = new Blood.AB{}
   } :: List(donorO_1, DonorOorA())
 
   val rr = DonorOorA()
@@ -73,10 +73,9 @@ case class RecipientB() extends Recipient[Blood.B]:
 case class RecipientAB() extends Recipient[Blood.AB]:
   override def receive(blood: Blood.AB): Unit = ()
 
-abstract class Blood
 
 object Blood:
-  trait AB
+  sealed trait AB
 
   trait A extends AB
 
