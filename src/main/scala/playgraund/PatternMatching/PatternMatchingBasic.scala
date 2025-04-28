@@ -4,25 +4,6 @@ import scala.collection.mutable.ListBuffer
 
 object PatternMatchingBasic extends App {
 
-  println(Bar(Foo()) == Bar(Foo())) // false
-
-  val foo_val = Foo()
-  println(Bar(foo_val) == Bar(foo_val)) // true
-
-  var foo_var = Foo()
-  val b1 = Bar(foo_var)
-  foo_var = Foo()
-  val b2 = Bar(foo_var)
-  println(b1 == b2) // false
-
-  val lb = ListBuffer(1,2)
-  var baz1 = Baz(lb)
-  lb +=3
-  var baz2 = Baz(lb)
-  println(baz1 == baz2) //true
-
-  println(baz1) //(1,2,3)
-  println(baz2) //(1,2,3)
 
 }
 
@@ -33,9 +14,17 @@ case class UnOp(operator: String, arg: Expr) extends Expr
 case class BinOp(operator: String, left: Expr,right: Expr) extends Expr
 
 
-class Foo
+def describe(e: Expr): String =
+  e match
+    case _: Num => "a number"
+    case _: Var => "a var"
+    case _ => "something else"
 
-case class Bar(a: Foo)
-
-case class Baz(a: ListBuffer[Int])
-
+def simplify(expr: Expr): Expr =
+  expr match
+    case UnOp("-", UnOp("-", x)) => simplify(x) // - -(x)
+    case BinOp("+", Num(0), x) => simplify(x)
+    case BinOp("*", Num(1), x) => simplify(x)
+    case UnOp(op,e) => UnOp(op,simplify(e))
+    case BinOp(operator, left, right) => BinOp(operator,simplify(left),simplify(right))
+    case _ => expr
