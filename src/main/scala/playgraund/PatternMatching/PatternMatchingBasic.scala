@@ -2,17 +2,13 @@ package playgraund.PatternMatching
 
 import scala.collection.mutable.ListBuffer
 
-object PatternMatchingBasic extends App {
-
-
-}
+object PatternMatchingBasic extends App {}
 
 sealed trait Expr
 case class Var(name: String) extends Expr
 case class Num(number: Double) extends Expr
 case class UnOp(operator: String, arg: Expr) extends Expr
-case class BinOp(operator: String, left: Expr,right: Expr) extends Expr
-
+case class BinOp(operator: String, left: Expr, right: Expr) extends Expr
 
 def describe(e: Expr): String =
   e match
@@ -25,6 +21,6 @@ def simplify(expr: Expr): Expr =
     case UnOp("-", UnOp("-", x)) => simplify(x) // - -(x)
     case BinOp("+", Num(0), x) => simplify(x)
     case BinOp("*", Num(1), x) => simplify(x)
-    case UnOp(op,e) => UnOp(op,simplify(e))
-    case BinOp(operator, left, right) => BinOp(operator,simplify(left),simplify(right))
+    case UnOp(op, e) => UnOp(op, simplify(e))
+    case BinOp(operator, left, right) => BinOp(operator, simplify(left), simplify(right))
     case _ => expr

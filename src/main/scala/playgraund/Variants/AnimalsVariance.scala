@@ -10,7 +10,7 @@ object AnimalsVariance extends App {
   val catVet = Vet[Cat]
 
   val another_c = catVet.rescue(new Cat {})
- // val another_d = catVet.rescue(new Dog {})
+  // val another_d = catVet.rescue(new Dog {})
 
   val aaaa = Iterable.apply("1")
 }

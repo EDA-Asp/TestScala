@@ -3,9 +3,9 @@ package playgraund.Recursion
 object MSosrt extends App {
 
   msort(List(1, 2, 3))(_ < _)
-  
-  val s = msort(_:List[Int])(_>_)
-  println(s(List(1,2,3)))
+
+  val s = msort(_: List[Int])(_ > _)
+  println(s(List(1, 2, 3)))
 
 }
 

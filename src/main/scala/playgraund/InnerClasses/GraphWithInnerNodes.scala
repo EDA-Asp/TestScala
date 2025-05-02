@@ -31,13 +31,11 @@ class Graph():
     def connectTo(node: Node): Unit =
       if !connectedNodes.exists(node.equals) then connectedNodes = node :: connectedNodes
 
-
 class Graph2:
   class Node:
     var connectedNodes: List[Graph2#Node] = Nil
     def connectTo(node: Graph2#Node): Unit =
-      if !connectedNodes.exists(node.equals) then
-        connectedNodes = node :: connectedNodes
+      if !connectedNodes.exists(node.equals) then connectedNodes = node :: connectedNodes
 
   var nodes: List[Node] = Nil
   def newNode: Node =

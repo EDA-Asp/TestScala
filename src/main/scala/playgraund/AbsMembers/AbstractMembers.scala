@@ -18,8 +18,7 @@ object AbstractMembers extends App {
 
   Bear().eat(new someDog.SuitableFood)
 
-
-  //Refinement types
+  // Refinement types
 
   var animals: List[Animal { type SuitableFood <: Grass }] = List(
     new Animal {
@@ -30,12 +29,11 @@ object AbstractMembers extends App {
       override type SuitableFood = Grass & Fish
       override def eat(food: SuitableFood): Unit = {}
     }
-
   )
 
   var a = animals.head
 
-  type MeatEaters = Animal {type SuitableFood <: Meat}
+  type MeatEaters = Animal { type SuitableFood <: Meat }
 
   var animals2: List[MeatEaters] = List(
     new Animal:

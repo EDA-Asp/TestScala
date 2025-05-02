@@ -33,7 +33,7 @@ object BloodGroups extends App {
         }
       case 1 =>
         new User("u2") with Donor[Blood.A] {
-          val give: Blood.A = new Blood.A{}
+          val give: Blood.A = new Blood.A {}
         }
   }
 
@@ -46,11 +46,11 @@ object BloodGroups extends App {
   recipientA_1.receive(DonorOorA().give)
 
   val Adonor: Donor[Blood.A] = new User("I") with Donor[Blood.O] {
-    val give = new Blood.O{}
+    val give = new Blood.O {}
   }
 
   val listOfADonors = new User("I") with Donor[Blood.AB] {
-    val give = new Blood.AB{}
+    val give = new Blood.AB {}
   } :: List(donorO_1, DonorOorA())
 
   val rr = DonorOorA()
@@ -73,11 +73,9 @@ case class RecipientB() extends Recipient[Blood.B]:
 case class RecipientAB() extends Recipient[Blood.AB]:
   override def receive(blood: Blood.AB): Unit = ()
 
-
 object Blood:
   sealed trait AB:
     override def toString: String = "AB"
-
 
   trait A extends AB:
     override def toString: String = "B"
@@ -87,7 +85,6 @@ object Blood:
 
   trait O extends A with B:
     override def toString: String = "0"
-
 
 end Blood
 

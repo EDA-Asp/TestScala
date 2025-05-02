@@ -11,7 +11,6 @@ object Traits extends App {
   println(frog_phil.philosophize)
   println(Baz().get)
 
-
   val qb = BasicQueue()
 
   val qbd = new BasicQueue with Doubling
@@ -31,8 +30,6 @@ object Traits extends App {
 //  pr(x.head)
 
 }
-
-
 
 class Animal
 
@@ -72,8 +69,6 @@ transparent trait Incrementing extends IntQueue:
 
 transparent trait Filtering extends IntQueue:
   abstract override def put(x: Int): Unit = if x > 0 then super.put(x)
-
-
 
 //val condition = false
 //transparent trait S

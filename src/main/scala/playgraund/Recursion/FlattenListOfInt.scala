@@ -1,7 +1,7 @@
 package playgraund.Recursion
 
-object FlattenListOfInt extends App{
-  println(flatten(List(1,2,List(3,4,List(5,6)))))
+object FlattenListOfInt extends App {
+  println(flatten(List(1, 2, List(3, 4, List(5, 6)))))
 }
 
 def flatten(l: List[Any]): List[Any] =

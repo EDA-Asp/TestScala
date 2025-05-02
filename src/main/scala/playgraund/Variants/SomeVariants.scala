@@ -35,11 +35,9 @@ object SomeVariants extends App {
   val rez = ua(4)
 
   def f(x: Int) = if x > 10 then Some(x) else None
-  
-  
+
   val foo = Foo[Int](x = 10)
   val fooX: Any = foo.x
-  
 
 }
 

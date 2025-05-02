@@ -2,12 +2,11 @@ package playgraund
 
 object FunQueue extends App {
 
-  val a = Queue(1,2,3,4)
+  val a = Queue(1, 2, 3, 4)
   a.head
   a.tail
   val b = a.enqueue(1).enqueue(2)
   println(b)
-
 
 }
 
@@ -23,7 +22,7 @@ class Queue[A] private (private val leading: List[A], private val trailing: List
 
   def tail: Queue[A] =
     val q = mirror
-    new Queue[A](q.leading.tail,q.trailing)
+    new Queue[A](q.leading.tail, q.trailing)
 
   override def toString: String =
     val l = leading ::: trailing.reverse

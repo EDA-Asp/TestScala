@@ -9,7 +9,7 @@ object RationNumbers extends App {
   val r = n1 + n2
   println(r)
 
-  println(Ration(1,2) == Ration(1,2))
+  println(Ration(1, 2) == Ration(1, 2))
 
 }
 
