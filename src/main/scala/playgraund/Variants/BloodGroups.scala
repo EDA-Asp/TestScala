@@ -75,13 +75,19 @@ case class RecipientAB() extends Recipient[Blood.AB]:
 
 
 object Blood:
-  sealed trait AB
+  sealed trait AB:
+    override def toString: String = "AB"
 
-  trait A extends AB
 
-  trait B extends AB
+  trait A extends AB:
+    override def toString: String = "B"
 
-  trait O extends A with B
+  trait B extends AB:
+    override def toString: String = "A"
+
+  trait O extends A with B:
+    override def toString: String = "0"
+
 
 end Blood
 
