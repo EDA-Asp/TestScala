@@ -13,6 +13,11 @@ object Enumes extends App {
   }
 
   println(z)
+//
+//  val a = CustumerT.OpenC(1)
+//  val b = CustumerT.CloseC("asd")
+//
+//  val a = summon[Productable[CustumerT]]
 
 }
 
@@ -22,3 +27,16 @@ enum Vie[-T]:
 trait Animal
 trait Dog extends Animal
 trait Cat extends Animal
+
+enum CustumerT:
+  case OpenC(a: Int)
+  case CloseC(a: String)
+
+trait Productable[A]:
+  def produce: A
+
+given Productable[Int] with
+  override def produce: Int = 100
+
+given Productable[String] with
+  override def produce: String = "AAA"

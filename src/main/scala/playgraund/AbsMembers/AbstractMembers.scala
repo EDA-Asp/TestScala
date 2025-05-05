@@ -12,6 +12,8 @@ object AbstractMembers extends App {
   // Cow().eat(Fish())
   Bear().eat(Fish())
 
+  val aaa: Animal = Bear()
+
   val someDog = new Dog
 
   val f = new someDog.SuitableFood
@@ -40,9 +42,18 @@ object AbstractMembers extends App {
       override type SuitableFood = Meat
 
       override def eat(food: SuitableFood): Unit = ()
+    ,
+    Dog()
   )
 
+//  val b = Bear()
+//
+//  val meatEater: MeatEaters = b
+
 }
+
+class Pasture:
+  var animals: List[Animal { type SuitableFood = Grass }] = List(Cow(), Horse())
 
 trait Fresh
 
@@ -57,6 +68,14 @@ abstract class Animal:
   def eat(food: SuitableFood): Unit
 
 class Cow extends Animal:
+  // method eat has a different signature than the overridden declaration
+  // override def eat(food: Grass): Unit = {}
+
+  override type SuitableFood = Grass
+
+  override def eat(food: SuitableFood): Unit = {}
+
+class Horse extends Animal:
   // method eat has a different signature than the overridden declaration
   // override def eat(food: Grass): Unit = {}
 
