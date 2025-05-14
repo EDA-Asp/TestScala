@@ -43,6 +43,9 @@ object UandI extends App { // not ok
     xs.foldLeft(m.unit)(_.combine(_))
 
   println(1.combine(10))
+
+  println(1.combine(2))
+
 }
 
 //

@@ -4,7 +4,13 @@ object Currying extends App {
 
   var inc = 1
 
-  println(even() equals even())
+  println("@@@@@@@@@@@@@!!!!")
+  println(even() == even())
+
+  val ev1 = even()
+  val ev2 = even()
+
+  println(ev1 == ev2)
 
   def even(): Int => Boolean = _ % 2 == 0
 
@@ -23,6 +29,21 @@ object Currying extends App {
 
   println("@@@@@@")
   println(bar14(1)(10))
+
+  println(Abra().foo(1)(2))
+  val pfff = Abra().foo(1)
+
+  def concatenator1(a: String, b: String, c: String) = a + b + c
+
+  val insertName = concatenator1("Hello", _, "Yep")
+
+  val insertPrefPos = concatenator1(_, "Ema", _) // (String,String)=>String
+
+  def concatenator2(a: String)(b: String)(c: String) = a + b + c
+
+  val insertName2 = concatenator2("Hello")(_: String)("Yep")
+  val insertPrefPos2 = concatenator2(_: String)("Emma")(_: String) // (String,String)=>String
+  val crd = insertPrefPos2.curried // String => String => String
 
 }
 
@@ -52,3 +73,7 @@ val baz: Int => Int => Int => Int = x => y => z => (x + y) * z
 val baz2 = (x: Int) => (y: Int) => (z: Int) => x + y + z
 
 var k = baz(2)
+
+class Abra:
+  def foo(x: Int)(y: Int): Int =
+    x + y
