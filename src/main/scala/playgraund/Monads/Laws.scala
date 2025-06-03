@@ -146,12 +146,11 @@ def pms(): Unit =
 
 //https://stackoverflow.com/questions/10291176/how-to-use-scala-trait-with-self-reference
 //https://stackoverflow.com/questions/10291176/how-to-use-scala-trait-with-self-reference
-//trait IO:
-//  self: IO =>
-//  def unsafeRun: Unit
-//
-//  def ++(io: IO): IO = new:
-//    def unsafeRun: Unit =
-//      self.unsafeRun
-//      io.unsafeRun
-//
+trait IO:
+  self: IO =>
+  def unsafeRun: Unit
+
+  def ++(io: IO): IO = new:
+    def unsafeRun: Unit =
+      self.unsafeRun
+      io.unsafeRun

@@ -14,16 +14,19 @@ object ProdConsumer extends App {
   nt.start()
   println("a")
 
-//  val a = ProdConsumerV3.start()
-//  println(a)
+  val a = ProdConsumerV3.start()
+  println(a)
 
 }
 
-def consumerLog(s: String): Unit =
-  println(s"[consumer] $s")
+def consumerLog(s: String): Unit = {
+  val threadName = Thread.currentThread().getName
+  println(s"[consumer in $threadName] $s")
+}
 
 def producerLog(s: String): Unit =
-  println(s"[producer] $s")
+  val threadName = Thread.currentThread().getName
+  println(s"[producer in $threadName] $s")
 
 object ProdConsumerV3:
 
